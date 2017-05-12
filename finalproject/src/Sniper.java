@@ -1,4 +1,5 @@
 
-public class Sniper {
+public class Sniper 
+{
 
 }
