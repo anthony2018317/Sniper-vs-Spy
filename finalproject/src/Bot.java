@@ -1,5 +1,5 @@
 
-public class Bot implements Actor
+public class Bot
 {
 	private Position pos;
 	private int speedRating;
@@ -11,7 +11,7 @@ public class Bot implements Actor
 		xSize=40; //placeholder
 	    ySize=40; //placeholder
 	}
-	public void act(Position param1, Position param2, int param3)
+	public void act()
 	{
 		//call methods
 		int n=6;
@@ -28,6 +28,8 @@ public class Bot implements Actor
 	{
 		return pos;
 	}
+	
+	
 	public boolean isTouching(Position p)
 	{
 		Position topLeft=new Position(pos.getX()-xSize/2, pos.getY()+ySize/2);
