@@ -11,6 +11,7 @@ public class Grid
 		timeLimit=120;
 		xSize = xsize;
 		ySize = ysize;
+		actors = new ArrayList<Actor>();
 	}
 	public void repaint(Position mouseClickedAt, Position secondMouseLoc, int keypressed)
 	{
