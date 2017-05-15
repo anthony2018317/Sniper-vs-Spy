@@ -8,7 +8,7 @@ public class Grid
 	private final int timeLimit;
 	public Grid(int xsize, int ysize)
 	{
-		timeLimit=120;
+		timeLimit = 180;
 		xSize = xsize;
 		ySize = ysize;
 		actors = new ArrayList<Actor>();
@@ -44,9 +44,17 @@ public class Grid
 	{
 		return true;
 	}
-	
+	public int getXLength()
+	{
+		return xSize;
+	}
+	public int getYLength()
+	{
+		return ySize;
+	}
 	
 	
 	
 	
 }
+

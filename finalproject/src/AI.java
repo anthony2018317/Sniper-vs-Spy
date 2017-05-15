@@ -1,22 +1,42 @@
+dAI:
 import java.util.*;
 public class AI implements Actor
 {
-	private ArrayList<Objective> objectiveList;
 	private ArrayList<Bot> botList;
-	public AI(ArrayList<Bot> bots)
+	private int speedRating;
+	public AI(int numBots, Grid gr)
 	{
-		for(Bot bot: bots)
+		for(int i=0; i<numBots; i++)
 		{
-			botList.add(bot);
+			Position p=selectRandomPosition(gr);
+			Bot b= new Bot(p , (int) (Math.random()*11)+2);
+			boolean same=false;
+			for(Bot bot: botList)
+			{
+				if( p.equals(bot.getPosition()))
+				{
+					same=true;
+				}
+			}
+			if(same)
+			{
+				i--;
+			}
+			else
+			{
+				botList.add(b);
+			}
 		}
 	}
-	public void updateObjectives(ArrayList<Objective> objectives)
+	private Position selectRandomPosition(Grid gr)
 	{
-		for(Objective obj: objectives)
-		{
-			objectiveList.add(obj);
-		}
+		int x=gr.getXLength();
+		int y=gr.getYLength();
+		int newX=(int)(Math.random()*x);
+		int newY=(int)(Math.random()*y);
+		return new Position(newX, newY);
 	}
+
 	public void act(Position p1, Position p2, int p3)
 	{
 		for(Bot bot: botList)
@@ -25,3 +45,7 @@ public class AI implements Actor
 		}
 	}
 }
+
+
+
+

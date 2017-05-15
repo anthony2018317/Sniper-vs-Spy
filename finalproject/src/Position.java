@@ -1,4 +1,4 @@
-
+Position: 
 public class Position 
 {
 	private int x;
@@ -16,5 +16,8 @@ public class Position
 	{
 		return y;
 	}
-
+	public boolean equals(Position pos)
+	{
+		return (pos.getX()==x&&pos.getY()==y);
+	}
 }
