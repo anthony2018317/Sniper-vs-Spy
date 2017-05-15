@@ -13,6 +13,13 @@ public class Grid
 		ySize = ysize;
 		actors = new ArrayList<Actor>();
 	}
+	public void repaint(Position mouseClickedAt)
+	{
+		if(isValid(mouseClickedAt))
+		{
+			Sniper.
+		}
+	}
 	public void repaint(Position mouseClickedAt, Position secondMouseLoc, int keypressed)
 	{
 		
@@ -35,10 +42,8 @@ public class Grid
 	}
 	public void instantiate()
 	{
-		for(int i=0;i<20;i++)
-		{
-			Bot bot=new Bot(new Position(7, 8));
-		}
+		AI ai=new AI(17, this);
+		
 	}
 	public boolean isInBounds(Position pos)
 	{

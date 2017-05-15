@@ -28,6 +28,9 @@ public class Sniper
 		return false;
 	}
 	
-	public 
+	public void update(Position p)
+	{
+		pos=p;
+	}
 }
 

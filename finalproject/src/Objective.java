@@ -38,7 +38,7 @@ public class Objective
 	{
 		int x1=p.getX();
 		int y1=p.getY();
-		int x2=pos.getX()
+		int x2=pos.getX();
 	}
 	
 	private boolean isTouchingBottomCircle(Position p)

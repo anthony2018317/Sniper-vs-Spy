@@ -1,4 +1,4 @@
-dAI:
+
 import java.util.*;
 public class AI implements Actor
 {
