@@ -1,3 +1,4 @@
+
 import java.util.*;
 public class Sniper
 {
@@ -27,10 +28,13 @@ public class Sniper
 		}
 		return false;
 	}
+	public boolean isTouching(Position p)
+	{
+		return true;
+	}
 	
 	public void update(Position p)
 	{
 		pos=p;
-	}
 }
-
+}

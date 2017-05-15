@@ -1,4 +1,5 @@
 
+
 import java.util.*;
 public class Objective
 { 
@@ -8,6 +9,7 @@ public class Objective
 	private int radiusBottom=15;
 	private final int Xsize = 50;
 	private final int Ysize = 50;
+	private Position pos;
 	
 	public Objective(Position position)
 	{
@@ -39,19 +41,20 @@ public class Objective
 		int x1=p.getX();
 		int y1=p.getY();
 		int x2=pos.getX();
+		return false;
 	}
 	
 	private boolean isTouchingBottomCircle(Position p)
 	{
-		
+		return false;
 	}
 	private boolean isTouchingTrapezoid(Position p)
 	{
-		
+		return false;
 	}	
 	private boolean isTouchingTopCircle(Position p)
 	{
-		
-	}
+		return false;
 
+	}
 }
