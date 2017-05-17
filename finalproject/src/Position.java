@@ -21,3 +21,4 @@ public class Position
 		return (pos.getX()==x&&pos.getY()==y);
 	}
 }
+

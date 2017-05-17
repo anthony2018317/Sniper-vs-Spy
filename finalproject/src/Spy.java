@@ -1,11 +1,12 @@
 import java.util.*;
 public class Spy extends Bot{
 	
-	private final int stepsPerPress = 5;
+	private final int stepsPerPress;
+	private Position pos; 
 	
-	public Spy()
+	public Spy(Position p, stepsPerPress)
 	{
-		super(new Position(0,0));
+		pos=p;
 	}
 	
 	public void act(String keyPressed, int param2)
@@ -13,7 +14,7 @@ public class Spy extends Bot{
 		
 	}
 	
-	public Position getNextPosition(int direction)
+	public Position getNextPosition(char key)
 	{
 		return new Position(0,0);
 		}
@@ -22,4 +23,6 @@ public class Spy extends Bot{
 	{
 		return new ArrayList<Objective>();
 	}
+	
 }
+

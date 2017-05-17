@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 public class Objective
 { 
@@ -58,3 +56,4 @@ public class Objective
 
 	}
 }
+

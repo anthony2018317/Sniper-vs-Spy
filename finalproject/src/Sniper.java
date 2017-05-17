@@ -4,6 +4,7 @@ public class Sniper
 {
 	private Position pos;
 	private final int radius=15; //placeholder
+	private int numBullets;
 	
 	public boolean isInRange(ArrayList<Position> positions)
 	{
@@ -36,5 +37,16 @@ public class Sniper
 	public void update(Position p)
 	{
 		pos=p;
-}
-}
+	}
+	public int getNumBullets()
+	{
+		return numBullets;
+	}
+	public void shoot()
+	{
+		numBullets--;
+	}
+
+
+
+
