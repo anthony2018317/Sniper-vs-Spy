@@ -15,6 +15,7 @@ public class Grid
 		timeLimit = 180;
 		xSize = xsize;
 		ySize = ysize;
+		instantiate();
 	}
 	public void repaint(Position mouseMovedTo)
 	{
@@ -34,13 +35,13 @@ public class Grid
 		{
 			repaint(mouseClickedAt);
 		}
-		SpyMove(keyPressed);
+		SpyMove(keyPressed0);
 		ai.act();
 		
 		boolean[] wins=checkWin();
 		if(wins[0]==true)
 		{
-			update()
+			update)
 		}
 	}
 	private void update(boolean[] wins)
@@ -54,18 +55,19 @@ public class Grid
 		{
 			gooey.set(spy, spy.getPosition(), true);
 		}
-		
+		gooey.set(ai)
 		if(wins[0]==true)
 		{
 			gooey.endGame();
-		}
-		if(wins[1]==true)
-		{
-			gooey.spyWin(true);
-		}
-		if(wins[1]==false)
-		{
-			gooey.spyWin(false);
+		
+			if(wins[1]==true)
+			{
+				gooey.spyWin(true);
+			}
+			if(wins[1]==false)
+			{
+				gooey.spyWin(false);
+			}
 		}
 	}
 	//first element is true if game over, second if spy wins
@@ -138,12 +140,13 @@ public class Grid
 		objectives.add(obj2);
 		objectives.add(obj3);
 		objectives.add(obj4);
+		for()
 	}
 	
 	private Position randomPosition(int boundx1, int boundy1, int boundx2, int boundy2)
 	{
-		int x=(int)(Math.Random()*(boundx2-boundx1)+boundx1);
-		int y=(int)(Math.Random()*(boundy2-boundy1)+boundy1);
+		int x=(int)(Math.random()*(boundx2-boundx1)+boundx1);
+		int y=(int)(Math.random()*(boundy2-boundy1)+boundy1);
 		return new Position(x, y);
 	}
 	
