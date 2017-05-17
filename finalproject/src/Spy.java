@@ -17,7 +17,7 @@ public class Spy extends Bot{
 	public Position getNextPosition(char key)
 	{
 		return new Position(0,0);
-		}
+	}
 	
 	public ArrayList<Objective> touchObjective(ArrayList<Objective> objectives)
 	{
