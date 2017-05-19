@@ -1,4 +1,3 @@
-
 import java.util.*;
 public class Sniper
 {
@@ -46,7 +45,10 @@ public class Sniper
 	{
 		numBullets--;
 	}
-
-
-
+	public Position getPosition()
+	{
+		return pos;
+	}
+}
+	
 

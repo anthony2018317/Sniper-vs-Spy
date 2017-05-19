@@ -3,20 +3,22 @@ public class Grid
 {
 	private int xSize;
 	private int ySize;
-	private ArrayList<Objective> objectives;
 	private UI gooey;
 	private final int timeLimit;
 	private AI ai;
 	private Spy spy;
 	private Sniper sniper;
+	private ArrayList<Objective> objectives;
 	
-	public Grid(int xsize, int ysize)
+	public Grid(int xsize, int ysize, UI gui)
 	{
-		timeLimit = 180;
+		timeLimit = 120;
 		xSize = xsize;
 		ySize = ysize;
+		gooey=gui;
 		instantiate();
 	}
+	
 	public void repaint(Position mouseMovedTo)
 	{
 		if(isInBounds(mouseMovedTo))
@@ -31,35 +33,45 @@ public class Grid
 	public void repaint(Position mouseClickedAt, Position mouseMovedTo, char keyPressed)
 	{
 		repaint(mouseMovedTo);
-		if(!mouseClickedAt.equals(mouseMovedTo))
+		if((!mouseClickedAt.equals(mouseMovedTo))&&(mouseClickedAt!=null))
 		{
 			repaint(mouseClickedAt);
 		}
-		SpyMove(keyPressed0);
-		ai.act();
-		
-		boolean[] wins=checkWin();
-		if(wins[0]==true)
+		if(mouseClickedAt!=null)
 		{
-			update)
+			shoot();
 		}
+		SpyMove(keyPressed);
+		ai.act();
+		boolean[] wins=checkWin();
+		update(wins);
 	}
 	private void update(boolean[] wins)
 	{
-		gooey.set(sniper, sniper.getPosition(), true);
-		if(spy.isDead()==false)
+		gooey.setActor(sniper, sniper.getPosition(), true);
+		if(spy.isDead()==true)
 		{
-			gooey.set(spy, spy.getPosition(), false);
+			gooey.setActor(spy, spy.getPosition(), false);
 		}
 		else
 		{
-			gooey.set(spy, spy.getPosition(), true);
+			gooey.setActor(spy, spy.getPosition(), true);
 		}
-		gooey.set(ai)
+		ArrayList<Bot> aiList=ai.getAI();
+		for(Bot bot: aiList)
+		{
+			if(!bot.isDead())
+			{
+				gooey.setActor(bot, bot.getPosition(), true);
+			}
+			else
+			{
+				gooey.setActor(bot, bot.getPosition(), false);
+			}
+		}
 		if(wins[0]==true)
 		{
 			gooey.endGame();
-		
 			if(wins[1]==true)
 			{
 				gooey.spyWin(true);
@@ -75,7 +87,7 @@ public class Grid
 	{
 		boolean[] winArr=new boolean[2];
 		winArr[0]=true;
-		if(gooey.getTime()>timeLimit) //should be in GUI? 
+		if(gooey.getTime()>timeLimit) 
 		{
 			winArr[1]=false;
 			return winArr;
@@ -113,19 +125,18 @@ public class Grid
 		if(sniper.isInRange(spy.getContactPos()))
 		{
 			spy.shoot();
-			gooey.set(spy, false)
 		}
 		if(ai.shoot(sniper)!=null)
 		{
-			gooey.set(ai.shoot(sniper), false);
+			ai.shoot(sniper);
 		}
 	}
 	
 	private void SpyMove(char keyPressed)
 	{
 		spy.getNextPosition(keyPressed);
-		gooey.updatePosition(spy, spy.getPosition());
 	}
+	
 	public void instantiate()
 	{
 		ai=new AI(17, this);
@@ -140,7 +151,17 @@ public class Grid
 		objectives.add(obj2);
 		objectives.add(obj3);
 		objectives.add(obj4);
-		for()
+		gooey.addActor(spy, spy.getPosition(), true);
+		gooey.addActor(sniper, sniper.getPosition(), true);
+		for(Objective obj: objectives)
+		{
+			gooey.addActor(obj, obj.getPosition(), true);
+		}
+		ArrayList<Bot> aiList=ai.getAI();
+		for(Bot bot: aiList)
+		{
+			gooey.addActor(bot, bot.getPosition(), true);
+		}
 	}
 	
 	private Position randomPosition(int boundx1, int boundy1, int boundx2, int boundy2)
@@ -150,9 +171,9 @@ public class Grid
 		return new Position(x, y);
 	}
 	
-	public boolean isInBounds(Position pos)
+	public boolean isInBounds(Position p)
 	{
-		return true;
+		return p.getX()<xSize && p.getY()<ySize;
 	}
 	public int getXLength()
 	{

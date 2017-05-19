@@ -1,15 +1,16 @@
-
 import java.util.*;
-public class AI implements Actor
+public class AI
 {
 	private ArrayList<Bot> botList;
-	private int speedRating;
+	private int avgSpeedRating;
 	public AI(int numBots, Grid gr)
 	{
+		int sr=0;
 		for(int i=0; i<numBots; i++)
 		{
 			Position p=selectRandomPosition(gr);
-			Bot b= new Bot(p , (int) (Math.random()*11)+2);
+			sr+=(int) ((Math.random()*11)+2);
+			Bot b= new Bot(p , sr);
 			boolean same=false;
 			for(Bot bot: botList)
 			{
@@ -27,6 +28,7 @@ public class AI implements Actor
 				botList.add(b);
 			}
 		}
+		avgSpeedRating=sr/numBots;
 	}
 	private Position selectRandomPosition(Grid gr)
 	{
@@ -37,15 +39,42 @@ public class AI implements Actor
 		return new Position(newX, newY);
 	}
 
-	public void act(Position p1, Position p2, int p3)
+	public void act()
 	{
 		for(Bot bot: botList)
 		{
 			bot.act();
 		}
 	}
+	public Bot shoot(Sniper s)
+	{
+		Bot b=null;
+		for(Bot bot: botList)
+		{
+			if(s.isInRange(bot.getContactPos()))
+			{
+				bot.shoot();
+				b=bot;
+			}
+		}
+		return b;
+	}
+	public int getAvgSpeedRating()
+	{
+		return avgSpeedRating;
+	}
+	public ArrayList<Position> getPositions()
+	{
+		ArrayList<Position> positions=new ArrayList<Position>();
+		for(Bot bot: botList)
+		{
+			positions.add(bot.getPosition());
+		}
+		return positions;
+	}
+	public ArrayList<Bot> getAI()
+	{
+		return botList;
+	}
 }
-
-
-
 
