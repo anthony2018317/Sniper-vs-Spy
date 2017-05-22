@@ -1,3 +1,9 @@
+import java.awt.*;          // access to Container
+import java.awt.event.*;    // access to WindowAdapter, WindowEvent
+import javax.swing.*;       // access to JFrame and JComponents
+import javax.swing.Timer;
+import java.util.*;
+
 public class UI implements ActionListener
 {
 	private Grid gr;
@@ -52,8 +58,6 @@ public class UI implements ActionListener
         boti=botIcon.getImage();
         sniperi=sniperIcon.getImage();
         objectivei=objectiveIcon.getImage();
-        botPos=new ArrayList<Position>();
-        objectivePos=new ArrayList<Position>();
         deadBot=deadBotIcon.getImage();
         frame.setVisible(true);
         //sniperTimer=new javax.swing.Timer(10, this);
