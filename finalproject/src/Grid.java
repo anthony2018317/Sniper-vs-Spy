@@ -48,37 +48,16 @@ public class Grid
 	}
 	private void update(boolean[] wins)
 	{
-		gooey.setActor(sniper, sniper.getPosition(), true);
-		if(spy.isDead()==true)
-		{
-			gooey.setActor(spy, spy.getPosition(), false);
-		}
-		else
-		{
-			gooey.setActor(spy, spy.getPosition(), true);
-		}
-		ArrayList<Bot> aiList=ai.getAI();
-		for(Bot bot: aiList)
-		{
-			if(!bot.isDead())
-			{
-				gooey.setActor(bot, bot.getPosition(), true);
-			}
-			else
-			{
-				gooey.setActor(bot, bot.getPosition(), false);
-			}
-		}
+		gooey.repaint();
 		if(wins[0]==true)
 		{
-			gooey.endGame();
 			if(wins[1]==true)
 			{
-				gooey.spyWin(true);
+				gooey.endGame(spy);
 			}
 			if(wins[1]==false)
 			{
-				gooey.spyWin(false);
+				gooey.endGame(sniper);
 			}
 		}
 	}
@@ -135,6 +114,10 @@ public class Grid
 	private void SpyMove(char keyPressed)
 	{
 		spy.getNextPosition(keyPressed);
+		for(Objective obj: objectives)
+		{
+			obj.isTouching(spy.getPosition());
+		}
 	}
 	
 	public void instantiate()
@@ -151,16 +134,16 @@ public class Grid
 		objectives.add(obj2);
 		objectives.add(obj3);
 		objectives.add(obj4);
-		gooey.addActor(spy, spy.getPosition(), true);
-		gooey.addActor(sniper, sniper.getPosition(), true);
+		gooey.addActor(spy);
+		gooey.addActor(sniper);
 		for(Objective obj: objectives)
 		{
-			gooey.addActor(obj, obj.getPosition(), true);
+			gooey.addActor(obj);
 		}
 		ArrayList<Bot> aiList=ai.getAI();
 		for(Bot bot: aiList)
 		{
-			gooey.addActor(bot, bot.getPosition(), true);
+			gooey.addActor(bot);
 		}
 	}
 	
@@ -184,4 +167,3 @@ public class Grid
 		return ySize;
 	}	
 }
-

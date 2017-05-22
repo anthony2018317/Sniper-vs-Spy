@@ -1,5 +1,5 @@
 import java.util.*;
-public class Objective
+public class Objective implements Actor
 { 
 	private boolean reached;
 	private ArrayList<Position> positions; //clockwise from left top radius
@@ -21,33 +21,22 @@ public class Objective
 	{
 		return pos;
 	}
-	public boolean isTouching(ArrayList<Position> positions)
+	public boolean isAlive()
 	{
-		for(Position p: positions)
-		{
-			if(isTouchingCircle(p)||isTouchingTrapezoid(p))
-			{
-				reached=true;
-				return true;
-			}
-		}
-		return false; 
+		return true;
 	}
-	private boolean isTouchingCircle(Position p)
+	public boolean isTouching(Position p)
 	{
-		double x=p.getX()-pos.getX();
-		double y=p.getY()-pos.getY();
-		double distance=Math.sqrt(x*x+y*y);
-		if(distance<radiusTop)
+		int xleft=pos.getX()-Xsize/2-15;
+		int xright=pos.getX()+Xsize/2+15;
+		int ybottom=pos.getY()-Ysize/2-15;
+		int ytop=pos.getY()+Ysize/2+15;
+		if(p.getX()>xleft&&p.getX()<xright&&p.getY()>ybottom&&p.getY()<ytop)
 		{
+			reached=true;
 			return true;
 		}
 		return false;
 	}
-	private boolean isTouchingTrapezoid(Position p)
-	{
-		double x=p.getX();
-		double y=p.getY();
-		if(y>)
-	}	
 }
+

@@ -1,5 +1,4 @@
-
-public class Bot 
+public class Bot implements Actor 
 {
 	private Position pos;
 	private int speedRating;
@@ -49,7 +48,7 @@ public class Bot
 		state=false;
 	}
 
-	public boolean isDead()
+	public boolean isAlive()
 	{
 		return state;
 	}

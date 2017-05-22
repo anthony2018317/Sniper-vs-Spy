@@ -1,5 +1,6 @@
+
 import java.util.*;
-public class Sniper
+public class Sniper implements Actor
 {
 	private Position pos;
 	private final int radius=15; //placeholder
@@ -49,6 +50,9 @@ public class Sniper
 	{
 		return pos;
 	}
+	public boolean isAlive()
+	{
+		return true;
+	}
 }
 	
-
