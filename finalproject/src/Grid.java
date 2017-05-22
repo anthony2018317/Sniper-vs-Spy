@@ -52,6 +52,7 @@ public class Grid
 		if(wins[0]==true)
 		{
 			if(wins[1]==true)
+				
 			{
 				gooey.endGame(spy);
 			}

@@ -2,26 +2,59 @@ import java.util.*;
 public class Spy extends Bot{
 	
 	private final int stepsPerPress;
-	private Position pos; 
+	private Position pos;
+	private Position tempPos;
+
 	
 	public Spy(Position p, stepsPerPress)
 	{
 		pos=p;
+		stepsPerPress = 5;
+		tempPos = pos;
 	}
 	
-	public void act(String keyPressed, int param2)
+	public void setPosition(Position newPos)
 	{
-		
+		pos=newPos;
 	}
 	
-	public Position getNextPosition(char key)
+	public void act(char key)
 	{
-		return new Position(0,0);
+		if(key == 'w')
+		{
+			// to move 'up', decrease y
+			pos.setY(pos.getY()-stepsPerPress);
+		}
+		else if(key == 'a')
+		{
+			tempPos.setY(pos.getY() + stepsPerPress);
+			if(Grid.isInBounds(tempPos))
+			{
+				pos.setY(pos.getY()+stepsPerPress;
+			}
+			else
+			{
+				return;
+			}
+		}
+		else if(key == 's')
+		{
+			//xPos--;
+		}
+		else if(key == 'd')
+		{
+			//yPos++;
+		}
 	}
 	
-	public ArrayList<Objective> touchObjective(ArrayList<Objective> objectives)
+	
+	public boolean touchObjective(ArrayList<Objective> objectives)
 	{
-		return new ArrayList<Objective>();
+		if(//Spy is touching Objective)
+			{
+				return true;
+			}
+		return false;
 	}
 	
 }
